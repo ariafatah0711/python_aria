@@ -41,8 +41,8 @@ while True:
 
     # dari tutorial sebelumnya hilangkan beasiswa
     # output
-    print(f"\n{'key':<6} {'nama':<17} {'nim':<8} {'sks lulus':<10} {'tanggal lahir':<10}")
-    print("-"*50)
+    print(f"\n{'key':<6} {'nama':<17} {'nim':<13} {'sks lulus':<10} {'tanggal lahir':<10}")
+    print("-"*64)
 
     for mahasiswa in data_mahasiswa:
         key = mahasiswa
@@ -52,7 +52,7 @@ while True:
         sks = data_mahasiswa[key]["sks_lulus"]
         lahir = data_mahasiswa[key]["lahir"].strftime("%x")
 
-        print(f"{key:<6} {nama:<17} {nim:<8} {sks:^10} {lahir:^10}")
+        print(f"{key:<6} {nama:<17} {nim:<13} {sks:^10} {lahir:^10}")
 
     is_done = input("\nlanjut(Y/N)? ")
     if is_done == "n":
