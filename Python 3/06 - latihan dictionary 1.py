@@ -58,4 +58,4 @@ while True:
     if is_done == "n":
         break
 
-print("\nakhir dari progam terima kasih")
+print("\nakhir dari progam terima kasih.")
