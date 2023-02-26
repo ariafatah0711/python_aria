@@ -1,0 +1,1 @@
+data = "aria fatah si paling ngoding"
