@@ -22,5 +22,5 @@ print(f"jumlah a: {data_count['a']}")
 # import file
 import io
 
-file = io.open("file_text.txt","r")
-print(file.read()) # gajelas ga keluar wkwkwk # ternyata harus file yang ada di dalam folder pertama
+# file = io.open("file_text.txt","r")
+# print(file.read()) # gajelas ga keluar wkwkwk # ternyata harus file yang ada di dalam folder pertama
