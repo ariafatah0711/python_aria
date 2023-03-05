@@ -47,11 +47,22 @@ def create_first_data():
     except:
         print("File tidak dapat ditambahkan!")
 
-def read():
+def read(**kwargs):
     try:
         with open(Database.DB_NAME, "r") as file:
             content = file.readlines()
-            return content
+            jumlah_buku = len(content)
+            global x
+            x = True
+
+            if "index" in kwargs:
+                index_buku = kwargs["index"]-1
+                if index_buku < 0 or index_buku > jumlah_buku:
+                    return False
+                else:
+                    return content[index_buku]
+            else:
+                return content
     except:
         print("membaca Database error")
         return False

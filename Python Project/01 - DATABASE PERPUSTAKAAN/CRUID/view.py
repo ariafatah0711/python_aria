@@ -1,5 +1,5 @@
 from . import operasi
-import os, time
+import os, time, sys
 
 def lanjut():
     global x
@@ -28,6 +28,9 @@ def read_console():
     print("="*102)
     print(f"|{index:^4} | {judul:40} | {penulis:40} | {tahun:5} |")
     print("-"*102)
+
+    global v
+    v = True
 
     # data
     for index,data in enumerate(data_file):
@@ -76,3 +79,32 @@ def create_console():
     elif operasi.x == False:
         v = False
         
+def update_console():
+    global v,x
+    x = True
+    v = True
+    while True:
+        print("silakan pilih no buku")
+        read_console()
+        no_buku = int(input("no buku: "))
+        data_buku = operasi.read(index=no_buku)
+
+        if data_buku:
+            break
+        else:
+            print("nomor tidak valid silakan coba lagi")
+
+    data_break = data_buku.split(',')
+    pk = data_break[0]
+    data_add = data_break[1]
+    judul = data_break[2]
+    penulis = data_break[3]
+    tahun = data_break[4][:-1]
+
+    print(pk)
+    print(data_add)
+    print(judul)
+    print(penulis)
+    print(tahun)
+
+    print(data_buku)

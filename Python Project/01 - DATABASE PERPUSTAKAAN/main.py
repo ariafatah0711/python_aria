@@ -38,10 +38,11 @@ if __name__ == "__main__":
         match user_option:
             case "1": CRUID.read_console()
             case "2": CRUID.create_console()
-            case "3": print("Update Data")
+            case "3": CRUID.update_console()
             case "4": print("Delete Data")
             case _:
-                print("opsi tidak ditemukan, silakan coba lagi"), time.sleep(1.3)
+                print("opsi tidak ditemukan, silakan coba lagi")
+                time.sleep(1.3)
                 continue
 
         if CRUID.view.v == True:
@@ -50,5 +51,7 @@ if __name__ == "__main__":
                 break
             else:
                 pass
+        else:
+            pass
 
     print("progam berakhir")
