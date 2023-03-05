@@ -84,7 +84,7 @@ def create(tahun, judul, penulis):
     is_lanjut = input("tambahkan Data? ")
     global x
     if is_lanjut == "y" or is_lanjut == "Y":
-        data_str = f'\n{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}, '
+        data_str = f'\n{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}'
         try:
             with open(Database.DB_NAME, "a", encoding="utf-8") as file:
                 file.write(data_str)
@@ -105,7 +105,10 @@ def update(no_buku,pk,data_add,tahun,judul,penulis):
     data["judul"] = judul + Database.TEMPLATE["judul"][len(judul):]
     data["tahun"] = str(tahun)
 
-    data_str = f'{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}'
+    if no_buku == 0:  
+        data_str = f'{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}, \n'
+    else:
+        data_str = f'\n{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}'
 
     panjang_data = len(data_str)
 
@@ -115,3 +118,28 @@ def update(no_buku,pk,data_add,tahun,judul,penulis):
             file.write(data_str)
     except:
         print("\nFile tidak dapat diubah!")
+
+def delete(no_buku):
+    try:
+        with (open(Database.DB_NAME, "r")) as file:
+            counter = 0
+            while True:
+                content = file.readline()
+                if len(content) == 0:
+                    break
+                elif counter == no_buku - 1 :
+                    pass
+                else:
+                    with open("data_temp.txt", "a", encoding="utf-8") as temp_file:
+                        temp_file.write(content)
+                counter += 1
+
+    except:
+        print("Database Error")
+
+    try:
+        os.rename("data_temp.txt", Database.DB_NAME)
+        print("data berhasil di hapus")
+    except:
+        print("Data minimal memiliki 1 buku")
+        time.sleep(2)

@@ -19,14 +19,14 @@ def read_console():
     index = "No"
     judul = "judul"
     penulis = "penulis"
-    tahun = "tahuun"
+    tahun = "tahun"
 
     # header
     print("="*102)
     print(f'|{"DATA BASE PERPUSTAKAAN":^100}|')
     print(f'|{"Read Data":^100}|')
     print("="*102)
-    print(f"|{index:^4} | {judul:40} | {penulis:40} | {tahun:5} |")
+    print(f"|{index:^4} | {judul:40} | {penulis:40} | {tahun:6} |")
     print("-"*102)
 
     global v
@@ -41,7 +41,7 @@ def read_console():
         judul = data_break[3]
         tahun = data_break[4]
 
-        print(f"|{index+1:^4} | {judul:.40} | {penulis:.40} | {tahun.strip():7}", end="|\n")
+        print(f"|{index+1:^4} | {judul:<.40} | {penulis:<.40} | {tahun.strip():7}", end="|\n")
 
     # footer
     print("="*102, "\n")
@@ -86,7 +86,11 @@ def update_console():
     while True:
         read_console()
         print("silakan pilih no buku yang ingin di update")
-        no_buku = int(input("no buku: "))
+        try:
+            no_buku = int(input("no buku: "))
+        except:
+            continue
+        
         data_buku = operasi.read(index=no_buku)
 
         if data_buku:
@@ -108,8 +112,8 @@ def update_console():
         print(f'|{f"UPDATE BUKU KE -{no_buku}":^100}|')
         print("="*102)
 
-        print(f'| 1. Judul \t: {judul:.70} \t     |')
-        print(f'| 2. Penulis \t: {penulis:.70} \t     |')
+        print(f'| 1. Judul \t: {judul:.<.70} \t     |')
+        print(f'| 2. Penulis \t: {penulis:.<.70} \t     |')
         print(f'| 3. Tahun \t: {tahun:<70} \t     |')
         print("="*102)
 
@@ -141,3 +145,53 @@ def update_console():
 
     x = False
     v = False
+
+def delete_console():
+    global v, x
+    v, x = True, True
+    read_console()
+
+    while True:
+        read_console()
+        print("silakan pilih no buku yang ingin di Delete")
+        try:
+            no_buku = int(input("no buku: "))
+        except:
+            continue
+
+        data_buku = operasi.read(index=no_buku)
+
+        if data_buku:
+            data_break = data_buku.split(",")
+            pk = data_break[0]
+            data_add = data_break[1]
+            penulis = data_break[2]
+            judul = data_break[3]
+            tahun = str(data_break[4])
+            
+            os.system("clear")
+            print(""+"="*102)
+            print(f'|{"DATA BASE PERPUSTAKAAN":^100}|')
+            print(f'|{f"DELETE BUKU KE -{no_buku}":^100}|')
+            print("="*102)
+
+            print(f'| 1. Judul \t: {judul:.70} \t     |')
+            print(f'| 2. Penulis \t: {penulis:.70} \t     |')
+            print(f'| 3. Tahun \t: {tahun:<70} \t     |')
+            print("="*102)
+
+            is_done = input("Menghapus Data (y/n)? ")
+            if is_done == "y" or is_done == "Y":
+                x, v = False, False
+                operasi.delete(no_buku)
+                time.sleep(1)
+                break
+                
+            elif is_done == "n" or is_done == "N":
+                x, v = False, False
+                break
+            else:
+                x, v = False, False
+                continue
+        else:
+            print("nomor tidak valid, silakan coba lagi")

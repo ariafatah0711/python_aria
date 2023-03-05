@@ -39,7 +39,7 @@ if __name__ == "__main__":
             case "1": CRUID.read_console()
             case "2": CRUID.create_console()
             case "3": CRUID.update_console()
-            case "4": print("Delete Data")
+            case "4": CRUID.delete_console()
             case _:
                 print("opsi tidak ditemukan, silakan coba lagi")
                 time.sleep(1.3)
