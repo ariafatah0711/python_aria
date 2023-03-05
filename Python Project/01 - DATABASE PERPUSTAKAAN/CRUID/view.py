@@ -1,6 +1,17 @@
 from . import operasi
-import os
+import os, time
 
+def lanjut():
+    global x
+    is_done = input("Apakah Selesai (y/n)? ")
+
+    if is_done == "y" or is_done == "Y":
+        x = True
+
+    else:
+        x = False
+
+# Read_Data
 def read_console():
     os.system("clear")
     data_file = operasi.read()
@@ -31,3 +42,37 @@ def read_console():
 
     # footer
     print("="*102, "\n")
+
+# Create_Data
+def create_console():
+    while True:
+        try:
+            os.system("clear")
+            print("="*32)
+            print(f'|{"DATA BASE PERPUSTAKAAN":^30}|')
+            print(f'|{"CREATE FILE":^30}|')
+            print("="*32)
+
+            penulis = input("| penulis : ")
+            judul = input("| judul\t  : ")
+            tahun = int(input("| tahun\t  : "))
+
+            if len(str(tahun)) == 4:
+                break
+            else:
+                print("tahun harus terdiri 4 angka, silakan masukan lagi (yyyy)")
+                time.sleep(1)
+        except:
+            print("tahun harus angka, silakan masukan lagi (yyyy)")
+            time.sleep(1)
+
+    operasi.create(tahun, judul, penulis)
+    global v
+    if operasi.x == True:
+        print("\nberikut adalah data baru anda")
+        time.sleep(1.5)
+        read_console()
+        v = True
+    elif operasi.x == False:
+        v = False
+        

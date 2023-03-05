@@ -21,7 +21,7 @@ if __name__ == "__main__":
         print(f'{"| 3. Update Data":<30} |')
         print(f'{"| 4. Delete Data":<30} |')
         print("="*32)
-
+    
     # check database itu ada atau tidak
     clear()
     head()
@@ -37,16 +37,18 @@ if __name__ == "__main__":
 
         match user_option:
             case "1": CRUID.read_console()
-            case "2": print("Create Data"), CRUID.operasi.create_first_data()
+            case "2": CRUID.create_console()
             case "3": print("Update Data")
             case "4": print("Delete Data")
             case _:
                 print("opsi tidak ditemukan, silakan coba lagi"), time.sleep(1.3)
                 continue
 
-        is_done = input("Apakah Selesai (y/n)? ")
-
-        if is_done == "y" or is_done == "Y":
-            break
+        if CRUID.view.v == True:
+            CRUID.view.lanjut()
+            if CRUID.view.x == True:
+                break
+            else:
+                pass
 
     print("progam berakhir")
