@@ -95,4 +95,23 @@ def create(tahun, judul, penulis):
         print("\ndata tidak di Create")
         time.sleep(1)
         x = False
-        
+
+def update(no_buku,pk,data_add,tahun,judul,penulis):
+    data = Database.TEMPLATE.copy()
+
+    data["pk"] = pk
+    data["date_add"] = data_add
+    data["penulis"] = penulis + Database.TEMPLATE["penulis"][len(penulis):]
+    data["judul"] = judul + Database.TEMPLATE["judul"][len(judul):]
+    data["tahun"] = str(tahun)
+
+    data_str = f'{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}'
+
+    panjang_data = len(data_str)
+
+    try:
+        with(open(Database.DB_NAME, "r+", encoding="utf-8")) as file:
+            file.seek(panjang_data*(no_buku-1))
+            file.write(data_str)
+    except:
+        print("\nFile tidak dapat diubah!")
