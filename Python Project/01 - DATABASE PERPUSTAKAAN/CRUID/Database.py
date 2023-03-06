@@ -25,5 +25,4 @@ def init_console():
         time.sleep(1)
         print("silakan membuat data base baru!")
         time.sleep(0.7)
-        with open(DB_NAME, "w", encoding="utf-8") as file:
-            operasi.create_first_data()
+        operasi.create_first_data()

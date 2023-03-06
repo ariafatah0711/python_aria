@@ -1,3 +1,4 @@
+from time import time
 import time, os
 from . import Database
 from .util import random_string
@@ -105,7 +106,7 @@ def update(no_buku,pk,data_add,tahun,judul,penulis):
     data["judul"] = judul + Database.TEMPLATE["judul"][len(judul):]
     data["tahun"] = str(tahun)
 
-    data_str = f'\n{data["pk"]},{data["date_add"]},{data["penulis"]},{data["judul"]},{data["tahun"]}'
+    data_str = f'{data["pk"]},{data["date_add"]},{data["penulis"]},{data["judul"]},{data["tahun"]}\n'
     # if no_buku == 0:  
     #     data_str = f'{data["pk"]},{data["date_add"]},{data["penulis"]},{data["judul"]},{data["tahun"]}\n'
     # else:
@@ -114,8 +115,8 @@ def update(no_buku,pk,data_add,tahun,judul,penulis):
     panjang_data = len(data_str)
 
     try:
-        with(open(Database.DB_NAME, "r+", encoding="utf-8")) as file:
-            file.seek(panjang_data*(no_buku-1))
+        with open(Database.DB_NAME, "r+", encoding="utf-8") as file:
+            file.seek(panjang_data*(no_buku - 1))
             file.write(data_str)
     except:
         print("\nFile tidak dapat diubah!")
@@ -139,7 +140,7 @@ def delete(no_buku):
         print("Database Error")
 
     try:
-        os.rename("data_temp.txt", Database.DB_NAME)
+        os.rename("data_temp.txt",Database.DB_NAME)
         print("data berhasil di hapus")
     except:
         print("Data minimal memiliki 1 buku")

@@ -1,5 +1,5 @@
 from . import operasi
-import os, time, sys
+import os, time
 
 def lanjut():
     global x
@@ -69,7 +69,7 @@ def create_console():
             print("tahun harus angka, silakan masukan lagi (yyyy)")
             time.sleep(1)
 
-    operasi.create(tahun, judul, penulis)
+    operasi.create(tahun,judul,penulis)
     global v
     if operasi.x == True:
         print("\nberikut adalah data baru anda")
@@ -103,7 +103,7 @@ def update_console():
     data_add = data_break[1]
     penulis = data_break[2]
     judul = data_break[3]
-    tahun = str(data_break[4])
+    tahun = data_break[4][:-1]
 
     while True:
         os.system("clear")
@@ -162,12 +162,12 @@ def delete_console():
         data_buku = operasi.read(index=no_buku)
 
         if data_buku:
-            data_break = data_buku.split(",")
+            data_break = data_buku.split(',')
             pk = data_break[0]
             data_add = data_break[1]
             penulis = data_break[2]
             judul = data_break[3]
-            tahun = str(data_break[4])
+            tahun = str(data_break[4][:-1])
             
             os.system("clear")
             print(""+"="*102)
