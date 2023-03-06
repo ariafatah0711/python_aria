@@ -98,7 +98,7 @@ def update_console():
         else:
             print("nomor tidak valid, silakan coba lagi")
 
-    data_break = data_buku.split(",")
+    data_break = data_buku.split(',')
     pk = data_break[0]
     data_add = data_break[1]
     penulis = data_break[2]

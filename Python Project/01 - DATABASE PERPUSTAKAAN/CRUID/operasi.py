@@ -39,7 +39,7 @@ def create_first_data():
     print(f'| date\t  : {data["date_add"]}')
     print("="*32)
 
-    data_str = f'{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}'
+    data_str = f'{data["pk"]},{data["date_add"]},{data["penulis"]},{data["judul"]},{data["tahun"]}\n'
 
     try:
         with open(Database.DB_NAME, "w", encoding="utf-8") as file:
@@ -67,7 +67,7 @@ def read(**kwargs):
         print("membaca Database error")
         return False
 
-def create(tahun, judul, penulis):
+def create(tahun,judul,penulis):
     data = Database.TEMPLATE.copy()
 
     data["pk"] = random_string(6)
@@ -84,7 +84,7 @@ def create(tahun, judul, penulis):
     is_lanjut = input("tambahkan Data? ")
     global x
     if is_lanjut == "y" or is_lanjut == "Y":
-        data_str = f'\n{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}'
+        data_str = f'{data["pk"]},{data["date_add"]},{data["penulis"]},{data["judul"]},{data["tahun"]}\n'
         try:
             with open(Database.DB_NAME, "a", encoding="utf-8") as file:
                 file.write(data_str)
@@ -105,10 +105,11 @@ def update(no_buku,pk,data_add,tahun,judul,penulis):
     data["judul"] = judul + Database.TEMPLATE["judul"][len(judul):]
     data["tahun"] = str(tahun)
 
-    if no_buku == 0:  
-        data_str = f'{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}, \n'
-    else:
-        data_str = f'\n{data["pk"]}, {data["date_add"]}, {data["penulis"]}, {data["judul"]}, {data["tahun"]}'
+    data_str = f'\n{data["pk"]},{data["date_add"]},{data["penulis"]},{data["judul"]},{data["tahun"]}'
+    # if no_buku == 0:  
+    #     data_str = f'{data["pk"]},{data["date_add"]},{data["penulis"]},{data["judul"]},{data["tahun"]}\n'
+    # else:
+    #     data_str = f'{data["pk"]},{data["date_add"]},{data["penulis"]},{data["judul"]},{data["tahun"]}\n'
 
     panjang_data = len(data_str)
 
