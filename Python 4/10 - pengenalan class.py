@@ -17,6 +17,7 @@ class mahasiswa():
     def tidur(self, kondisi):
         print(f"{self.nama} {self.kelas} sedang tidur {kondisi}")
 
+
 ## 1. otong
 # pengenalan
 otong = mahasiswa("otong surotong", "x.tkj.1")
@@ -42,5 +43,6 @@ aria.belajar("bahasa inggris")
 print(aria.nama)
 print(aria.kelas, "\n")
 
+# atribut dapat diubah
 aria.nama = "aria ganteng"
 print(aria.nama)
