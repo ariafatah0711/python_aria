@@ -8,8 +8,9 @@ saldo = 0
 
 # list menu
 while True:
-	print("\tLIST MENU CHICKEN")
-	print("------------------------------------")
+	os.system("clear")
+	print("\t\033[36;1mLIST MENU CHICKEN\033[37;1m")
+	print("\033[33;1m------------------------------------")
 	print("|NO| PESANAN \t\t|  HARGA   |")
 	print("------------------------------------")
 	print("|1.| kentang \t\t| Rp. 6000 |")
@@ -18,9 +19,9 @@ while True:
 	print("|4.| paha atas \t\t| Rp. 10000|")
 	print("|5.| dada \t\t| Rp. 11000|")
 	print("------------------------------------")
-	print("|#.| total pesanan \t| ", pesanan, "\t   |")
+	print("|#.| \033[36;1mtotal pesanan \t\033[33;1m| \033[32;1m", pesanan, "\t   \033[33;1m|")
 	print("------------------------------------")
-	print("\nX untuk exit | Y untuk berhenti")
+	print("\n\033[36;1mX untuk exit | Y untuk berhenti\033[37;1m")
 	
 # pilih pesanan
 	x = input("masukan kode barang: ")
@@ -57,6 +58,7 @@ while True:
 	elif x == "y":
 		break
 	elif x == "x":
+		print("\nprogam berhenti")
 		exit()
 	else:
 		print("kode anda salah!!!")
@@ -65,26 +67,26 @@ while True:
 		
 # data pesanan
 time.sleep(1)
-print("\ndaftar pesanan \t: ", ', ' .join(barang))
-print("harga pesanan \t: ", ", ".join(map(str, harga)))
-print("total pesanan \t:  Rp.", total)
+print("\n\033[32;1mdaftar pesanan \t\033[37;1m: ", ', ' .join(barang))
+print("\033[32;1mharga pesanan \t\033[37;1m: ", ", ".join(map(str, harga)))
+print("\033[32;1mtotal pesanan \t\033[37;1m:  Rp.", total)
 time.sleep(1)
 
 # pembayaran
 while True:
 	try:
-		saldo_anda = int(input("\nmasukan uang pembayaran: "))
+		saldo_anda = int(input("\n\033[37;1mmasukan uang pembayaran:\033[36;1m "))
 		time.sleep(1)
 	except ValueError:
-		print("pembayaran harus angka. silakan coba lagi!")
+		print("\033[31;1mpembayaran harus angka. silakan coba lagi!")
 		continue
 		
 	saldo += saldo_anda
 	if saldo == total:
-		print("uang anda pas")
+		print("\033[32;1muang anda pas\033[37;1m")
 		break
 	elif saldo >= total:
-		print("kembalianya \t:  Rp.", saldo - total)
+		print("\033[32;1mkembalianya \033[36;1m\t:  Rp.", saldo - total, "\033[37;1m")
 		break
 	else:
-		print("uangnya kurang\t : ", saldo - total)
+		print("\033[31;1muangnya kurang\t\033[36;1m : ", saldo - total, "\033[37;1m")

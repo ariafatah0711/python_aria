@@ -63,7 +63,7 @@ while True:
 	
 	menu_pesanan = list_menu[beli]
 	
-	print("================= Detail Pembayaran =================")
+	print("\n================= Detail Pembayaran =================")
 	for item in menu_pesanan:
 		print("Menu yang dipesan         : ",item)
 	print("Jumlah yang dipesan       : ",jumlah)
