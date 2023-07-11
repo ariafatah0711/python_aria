@@ -1,0 +1,11 @@
+# Ignore __pycache__ folder
+__pycache__
+
+# Ignore data.txt
+data.txt
+
+# Ignore data_1.txt to data_10.txt
+data_*.txt
+
+# Ignore env folder
+env/
