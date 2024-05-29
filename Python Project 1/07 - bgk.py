@@ -41,7 +41,7 @@ def render():
 def play():
     if (user == bot):
         print("| hasil : kamu seri! \t|")
-    if (user == "gunting" and bot == "kertas" or user == "batu" and bot == "gunting") or user == "kertas" and bot == "batu":
+    elif (user == "gunting" and bot == "kertas" or user == "batu" and bot == "gunting") or user == "kertas" and bot == "batu":
         print("| hasil : kamu menang! \t|")
     else:
         print("| hasil : kamu kalah! \t|")
