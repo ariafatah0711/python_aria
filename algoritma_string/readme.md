@@ -100,3 +100,58 @@
                    110
             p :    abaaba (j = 2)
 
+# algoritma booyer moore
+![alt text](image.png)
+- looking glass
+    - memerika kecocokan pattern P dengan text T dimulai dari index terakhir pada P
+    - namun pemeriksaan terhadap T tetap dimulai dari awal
+        - dalam hal ini indeks i akan dimulai pada nilai m-1 (jika panjang P adalah m)
+    - ex: T: SAYA ALIEN
+               000
+          P: ALI
+          0 akan dimulai dari Y dengan pattern I
+
+- character jump
+    - dilakukan ketika terjadi mismatch (P[j] != T[i] dengan T[i] = x)
+    - terdapat 3 kasus yang mungkin terjadi, periksa satu persatu sesuai urutan sebagai berikut
+        - bisa dibilang lompatan / pergeseran
+        - kasus 1
+                Xa
+                i
+              xcba
+                j
+            - jika terdapat x di P dengan index yang lebih kecil daripada j 
+                - seolah olah geserr P ke kanan agar posisi x di T[i] sejajar dengan posisi kemunculan terakhir
+
+        - kasus 2
+                XaX
+                i
+               cwax
+                j
+                x setelah diposisi j
+            - jika terdapat x di P, tapi pada posisi index yang lebih besar daripada j
+                - seolah olah geser P satu karakter ke kanan, agar posisi indeks terakhir P sejajar dengan (posisi akhir T sebelumnya)
+        - kasus 3
+                  Xa
+                  i
+                dcBa
+                  j
+                tidak ada x di P
+                jadi dia akan melongkap sebanyak 4 index karena posisi x tidak pernah muncul lagi
+            - mismatch pada T[i] dan P[j] dan karakter T[i] adalah x
+                - jika kasus 1 dan 2 tidak ditemukan saat terjadi mismatch (karakter x tidak ditemukan papda P)
+                    - seolah olah geser P agar posisi indeks pertama P (P[0]) sejajar dengan indeks i + 1
+
+    - fungsi last occurrence (LO)
+        - posisi kemunculan Terakhir suatu karakter pada p
+        - untuk kasus 1 dan kasus 2 perlu informasi mengenai di mana kemunculan terakhir suattu karakter pada P
+            - lakukan preproses fungsi, dengan menentukan posisi kemunculan terakhir semua karakter pada TEKS T di dallam Patern p
+            - jika suatu karakter pada T tidak muncul di P, maka nilai fungsi last occurrence untuk karakter tersebut adalah -1
+    
+    - kasus terburuk O(nm)
+        - T: aaaaa....aa
+        - P: baaaaa
+        - mirip seperti bruteforce
+    - cepet untuk teks dengan variassi karakter yang sangat beragam (A besar) karakter bahasa inggris
+    - lambat untuk teks dengan variasi karakter tidak beragam (karakter binary)
+    - lebih cepat dibandingkan brute force untuk karakter dalam bahasa inggris
