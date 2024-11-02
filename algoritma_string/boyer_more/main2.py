@@ -1,61 +1,67 @@
 import time
-from boyer_more import boyer_more
 
-#### masih gagal
+from boyer_more import boyer_more
 
 if __name__ == "__main__":
     list = {
-        "kaki 2": ["ayam", "gorila", "bebek", "elang", "burung unta"],
-        "kaki 4": ["sapi", "kucing", "kambing", "anjing", "harimau", "rusa", "kuda", "gajah", "kuda nil"],
-        "ekor": ["kucing", "harimau", "singa", "serigala", "buaya", "kadal", "ikan paus", "lumba-lumba"],
-        "tanduk": ["banteng", "rusa", "kambing", "kerbau", "sapi", "kijang"],
-        "sayap": ["ayam", "elang", "burung unta", "burung hantu", "kupu-kupu", "lebah", "nyamuk"],
-        "sirip": ["ikan paus", "hiu", "lumba-lumba", "ikan pari", "ikan salmon", "ikan lele"],
-        "bulu": ["ayam", "burung unta", "burung hantu", "elang", "bebek", "angsa", "penguin"],
-        "sisik": ["buaya", "kadal", "ular", "ikan lele", "ikan gurame", "ikan pari"],
-        "belalai": ["gajah"],
-        "kantung": ["kanguru", "koala", "wombat"],
-        "paruh": ["bebek", "angsa", "ayam", "burung hantu", "burung pipit"],
-        "bisa": ["ular", "kalajengking", "lebah", "tawon"],
-        "cakar": ["harimau", "singa", "kucing", "serigala", "elang", "ayam"],
-        "kuku": ["kuda", "sapi", "kambing", "banteng"],
-        "sirip punggung": ["hiu", "ikan paus", "ikan lele"],
-        "penyengat": ["lebah", "tawon", "ubur-ubur"],
-        "insang": ["ikan lele", "ikan gurame", "ikan pari", "ikan hiu", "ikan koi"]
+        # Ciri-ciri hewan
+        "kaki 2": ["ayam", "bebek", "gorila", "burung", "angsa"],
+        "kaki 4": ["sapi", "harimau", "serigala", "kucing", "gajah", "rusa", "kambing", "kuda", "anjing", "kerbau"],
+        "bulu": ["ayam", "bebek", "burung", "angsa", "penguin"],
+        "bersisik": ["ikan", "buaya", "kadal"],
+        "cangkang": ["kura-kura", "siput"],
+
+        # Tempat tinggal hewan
+        "hutan": ["gorila", "serigala", "kucing", "harimau", "rusa", "gajah", "kancil"],
+        "air": ["ikan", "buaya", "katak", "penyu"],
+        "gurun": ["unta", "kadal"],
+        "udara": ["burung", "kelelawar"],
+
+        # Kemampuan
+        "berenang": ["ikan", "katak", "buaya", "penyu", "berang-berang"],
+        "terbang": ["burung", "kelelawar", "angsa", "elang"],
+        "memanjat": ["kucing", "monyet", "gorila"],
+        "berlari cepat": ["cheetah", "rusa", "kuda", "serigala"],
+
+        # makanan
+        "rumput": ["sapi", "kuda", "rusa", "kerbau", "zebra"]
     }
 
-    def show_match(text, max_output = 2):
-        print(f"{text}:")
+    def show_match(text, max_output = 5):
+        print(f"{text}: \n{'-' * 20}")
         match_set = []
         start_time = time.time()
 
-        for pattern, animals in list.items():
+        for pattern, items in list.items():
             position = boyer_more(text, pattern)
             if position != -1:
-                match_set.append(set(animals))
+                match_set.append(set(items))
 
+        print(f"found {len(match_set)} pattern: {match_set} \n===> ")
         if match_set:
-            common_animals = set.intersection(*match_set)
+            if len(match_set) > 1:
+                common_items = set.intersection(*match_set)
+            else:
+                common_items = match_set[0]
+
             output_count = 0
-            for animal in common_animals:
-                print(animal)
+            match = []
+            for item in common_items:
+                match.append(item)
                 output_count += 1
                 if output_count >= max_output:
                     break
+            print(', '.join(match))
         else:
             print("no match found")
 
 
         end_time = time.time()
-        # duration_time = end_time - start_time
-        duration = (end_time - start_time) / 1
-        print(f"Average time per match search: {duration:.10f} seconds\n")
+        duration = (end_time - start_time)
+        print(f"{'-' * 20} \nAverage time: {duration:.10f} seconds\n\n")
 
-    show_match("sapi hewan berkaki 4")
-    show_match("ayam hewan berkaki 2")
-    show_match("kucing hewan berkaki 4")
-    show_match("banteng hewan bertanduk")
-    show_match("sapi merupakan mamalia berkaki 4 yang sering dipelihara")
-    show_match("ikan hiu adalah ikan yang hidup di laut")
-    show_match("banteng memiliki tanduk yang kuat")
-    show_match("penguin adalah burung yang memiliki sayap tetapi tidak bisa terbang")
+    # mencocokan pattern namun jika terdapat 2 pattern akan dicari value yang sama
+    show_match("hewan berkaki 4 yang hidup di hutan")
+    show_match("hewan berkaki 2 yang bisa terbang")
+    show_match("hewan berkaki 4 yang suka makan rumput")
+    show_match("hewan berkaki 2 yang bisa memanjat")
