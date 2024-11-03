@@ -22,7 +22,7 @@ if __name__ == "__main__":
         "insang": ["ikan",]
     }
 
-    def show_match(text, max_output = 2):
+    def show_match(text, max_output = 5):
         print(f"{text}: \n{'-' * 20}")
         start_time = time.time()
         match = False
@@ -51,8 +51,8 @@ if __name__ == "__main__":
     # hanya mencocokan text dengan pattern saja
     show_match("hewan berkaki 4")
     show_match("hewan berkaki 2")
+    show_match("hewan yang memiliki sayap tetapi tidak bisa terbang")
     show_match("hewan bertanduk")
     show_match("mamalia berkaki 4 yang sering dipelihara")
     show_match("ikan yang hidup di laut")
     show_match("hewan memiliki tanduk yang kuat")
-    show_match("hewan yang memiliki sayap tetapi tidak bisa terbang")
