@@ -66,7 +66,6 @@ if __name__ == "__main__":
     show_match("authentication default login") # 1 pattern
     show_match("authentication default website") # 2 tapi gak ada yang sama
     show_match("my wifi got arp spoofing") # 2 tapi gak ada yang sama
-    show_match("my wifi got arp spoofing")
     pass
 
 
@@ -98,12 +97,4 @@ value pattern   : {enable 5ghz wifi, secure wi-fi with wpa3}, {implement dhcp sn
 value output    : enable 5ghz wifi, implement dhcp snooping
 Average time    : 0.0000000000 seconds
 
-
-text            : my wifi got arp spoofing:
-----------------------------------------
-found 2 pattern : wifi, spoofing
-value pattern   : {enable 5ghz wifi, secure wi-fi with wpa3}, {implement dhcp snooping, set disable automation arp or arp-reply only}
-----------------------------------------
-value output    : enable 5ghz wifi, implement dhcp snooping
-Average time    : 0.0000000000 seconds
 '''
