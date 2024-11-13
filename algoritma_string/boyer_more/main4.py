@@ -18,7 +18,6 @@ def main(text):
         position = boyer_more(text.lower(), pattern.lower())
         if (position != -1):
             value = row["value"]
-            # priority = row['priority']
             if pattern not in patterns:
                 patterns.append(pattern)
             if value in match:
