@@ -1,5 +1,5 @@
 import time
-from boyer_more import boyer_more
+from kmp import kmp
 import pandas as pd
 from pathlib import Path
 
@@ -17,7 +17,7 @@ def main(text):
 
     for _, row in df.iterrows():
         pattern = row['pattern']
-        position = boyer_more(text.lower(), pattern.lower())
+        position = kmp(text.lower(), pattern.lower())
         if position != -1:
             value = row["value"]
             if pattern not in patterns:
@@ -39,8 +39,8 @@ def main(text):
     print(f"[!] waktu \t: {duration:.6f} detik\n")
 
 if __name__ == "__main__":
-    print(f"{'=' * 40} boyer more {'=' * 40}")
-
+    print(f"{'=' * 40} KMP {'=' * 40}")
+    
     main("hewan berkaki 2")
     main("hewan berkaki 4 yang hidup di hutan")
     main("hewan berkaki 2 yang suka makan rumput")
